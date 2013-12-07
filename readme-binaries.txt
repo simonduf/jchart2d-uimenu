@@ -17,7 +17,7 @@ and type
 Linux: "java  -classpath ext/jchart2d-3.3.0.jar:jchart2d-uimenu-1.0.0.jar info.monitorenter.gui.chart.uidemos.Showcase". 
 Windows: "java  -classpath ext/jchart2d-3.3.0.jar;jchart2d-uimenu-1.0.0.jar info.monitorenter.gui.chart.uidemos.Showcase". 
 
-You may also want to look at other demos. The may be launched by typing 
+You may also want to look at other demos. These may be launched by typing 
 "java -cp <jarfilelist> <fullyqualifiedclassname>". 
 E.g.: "java -cp jchart2d-3.3.0.jar:jchart2d-uimenu-1.0.0.jar  info.monitorenter.gui.chart.uidemos.CoordinateViewChart".
 
