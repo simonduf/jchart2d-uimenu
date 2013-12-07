@@ -1,0 +1,61 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <!--#include virtual="./head.shtml" -->
+ <script language="javascript">
+  var update="26/04/2012";
+ </script>
+ <body id="usage">
+  <div id="wrapper">
+   <div id="main">
+    <!-- Header -->
+    <!--#include virtual="./header.shtml" -->
+
+    
+    <!--#include virtual="./navigation.shtml" -->
+    <!-- Navigation --> 
+    <div id="content">
+     <h2>Usage</h2>
+     <p>
+      This page provides a quick howto for JChart2D. 
+      Additional information may be found at the 
+      <a href="docs.shtml">documentation</a> page.
+     </p>
+     
+  
+     <h3>Dependencies (3rd party jars)</h3>
+     <p>
+		Basically only the jchart2d-[version].jar <br/>
+
+		More jar files are only required if you use the Chart2D wrapped in the ChartPanel class and 
+		want to save EPS / PDF documents. You may use the ChartPanel (menu decorations) and not use 
+		the additional jar files. Then the menu to save EPS/PDF will be greyed out. 
+     </p>
+     <h4>Save as EPS support</h4>
+	 <p>
+		For EPS support you additionally need xmlgraphics-commons-[version].jar
+		<blockquote>
+			linux: "java -cp jchart2d-3.3.0.jar:xmlgraphics-commons-1.5.jar: info.monitorenter.gui.chart.demos.AdvancedDynamicChart" 
+			Windows: "java -cp jchart2d-3.3.0.jar;xmlgraphics-commons-1.5.jar; info.monitorenter.gui.chart.demos.AdvancedDynamicChart" 
+		</blockquote>
+	 </p>
+	 <h4>Save as PDF support</h4>
+	 <p>
+	 For PDF support you additionally need 
+	 <ul>
+	 	<li>xmlgraphics-commons-[version].jar</li> 
+	 	<li>fop-[version].jar</li>
+	 	<li>commons-logging-[version].jar</li>
+	 	<li>commons-io-[version].jar</li>
+	 	<li>batik-all-[version].jar</li>
+	 	<li>avalon-framework-[version].jar</li>
+ 	 </ul> 
+     </p>
+    </div>
+    <!-- End of contents div -->
+    <!-- The counter -->
+    <!--#include virtual="./footer.shtml" -->
+   </div>
+   <!-- End of main div -->
+  </div>	
+  <!-- End of wrapper div -->
+ </body>
+</html>
