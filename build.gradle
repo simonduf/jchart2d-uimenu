@@ -98,12 +98,12 @@ publishing {
 //    }
 //}
 
-//githubPages {
-//  repoUri = '...'
-//  pages {
-//    from javadoc
-//  }
-//}
+githubPages {
+  repoUri = 'git@github.com:simonduf/jchart2d-uimenu.git'
+  pages {
+    from javadoc
+  }
+}
 
 //task tagRelease << {
 //  repo.tag.add {
