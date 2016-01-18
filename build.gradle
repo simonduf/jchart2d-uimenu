@@ -1,3 +1,11 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.layer:gradle-git-repo-plugin:2.0.2'
+  }
+}
 plugins {
   id 'java'
   id 'eclipse'
@@ -15,15 +23,35 @@ plugins {
   id "org.ajoberstar.release-opinion" version "1.4.0-rc.1"
   id "org.ajoberstar.grgit" version "1.4.0-rc.1"
   id "org.ajoberstar.github-pages" version "1.4.0-rc.1"
-  
+
 }
+apply plugin: "maven-publish"
+apply plugin: 'git-repo'
+
 
 repositories {
         mavenCentral()
     }
 
-sourceCompatibility = 1.8
-version = '1.0.1'
+
+//Release task configuration
+	// Usage of the release task : ./gradlew release -Prelease.scope=major -Prelease.stage=final
+import org.ajoberstar.grgit.*
+release {
+	// need to specify the repository to interact with
+	grgit = Grgit.open(project.file('.'))
+}
+//TODO: add depends on other tasks in the release task
+//Ex tasks.release.dependsOn 'build', 'publishToMyRepo'
+
+//Task to verify the version string (result of the previous task configuration)
+task printVersion {
+    doLast { println project.version }
+}
+
+sourceCompatibility = 1.6
+//version = '1.0.1'
+group = 'info.monitorenter'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.9'
@@ -36,13 +64,46 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
-
-githubPages {
-  repoUri = '...'
-  pages {
-    from javadoc
-  }
+gitPublishConfig{
+    org = "simonduf"
+    repo = "JChart2d-maven"
 }
+
+String url() {
+    String org =  gitPublishConfig.org
+    String repo = gitPublishConfig.repo
+    String repoHome = gitPublishConfig.home
+    return "file://$repoHome/$org/$repo/releases"
+}
+
+publishing {
+    publications {
+        MyJar(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "file://${gitPublishConfig.home}/${gitPublishConfig.org}/${gitPublishConfig.repo}/releases"
+        }
+    }
+}
+
+//task publishJar(type: Upload, description: "Upload Jar library") {
+//    configuration = configurations.MyJar
+//    repositories {
+//        mavenDeployer {
+//            repository(url: url())
+//        }
+//    }
+//}
+
+//githubPages {
+//  repoUri = '...'
+//  pages {
+//    from javadoc
+//  }
+//}
 
 //task tagRelease << {
 //  repo.tag.add {
