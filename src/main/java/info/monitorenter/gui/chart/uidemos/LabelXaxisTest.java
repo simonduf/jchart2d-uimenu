@@ -135,7 +135,8 @@ public class LabelXaxisTest extends JFrame {
 
     chart.setAxisXBottom(xAxis, 0);
     chart.setAxisYLeft(yAxis, 0);
-    chart.setGridStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.CAP_BUTT, 10.0f, new float[] {1.0f, 4.0f }, 0.0f));
+    //FIXME method does not exist! (?)
+    //chart.setGridStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.CAP_BUTT, 10.0f, new float[] {1.0f, 4.0f }, 0.0f));
     final ITrace2D trace = new Trace2DSimple("Trace");
     chart.addTrace(trace);
     trace.setColor(Color.RED);
