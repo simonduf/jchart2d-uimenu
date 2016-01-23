@@ -38,6 +38,7 @@ repositories {
 
 //Release task configuration
 	// Usage of the release task : ./gradlew release -Prelease.scope=major -Prelease.stage=final
+	// milestone rc final
 import org.ajoberstar.grgit.*
 release {
 	// need to specify the repository to interact with
