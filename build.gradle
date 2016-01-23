@@ -23,14 +23,16 @@ plugins {
   id "org.ajoberstar.release-opinion" version "1.4.0-rc.1"
   id "org.ajoberstar.grgit" version "1.4.0-rc.1"
   id "org.ajoberstar.github-pages" version "1.4.0-rc.1"
-
+  
+  
+  id "com.jfrog.bintray" version "1.4"
+  id "maven-publish"
+  id 'maven'
 }
-apply plugin: "maven-publish"
-apply plugin: 'git-repo'
-
 
 repositories {
         mavenCentral()
+        jcenter()
     }
 
 
@@ -42,7 +44,7 @@ release {
 	grgit = Grgit.open(project.file('.'))
 }
 //TODO: add depends on other tasks in the release task
-//Ex tasks.release.dependsOn 'build', 'publishToMyRepo'
+tasks.release.dependsOn 'build' //, 'publishToMyRepo'
 
 //Task to verify the version string (result of the previous task configuration)
 task printVersion {
@@ -50,8 +52,9 @@ task printVersion {
 }
 
 sourceCompatibility = 1.6
-//version = '1.0.1'
-group = 'info.monitorenter'
+targetCompatibility = 1.6
+//version = '1.0.1' //Defined by release-opinion
+group = 'simond'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.9'
@@ -64,45 +67,34 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
-gitPublishConfig{
-    org = "simonduf"
-    repo = "JChart2d-maven"
-}
 
-String url() {
-    String org =  gitPublishConfig.org
-    String repo = gitPublishConfig.repo
-    String repoHome = gitPublishConfig.home
-    return "file://$repoHome/$org/$repo/releases"
-}
 
-publishing {
-    publications {
-        MyJar(MavenPublication) {
-            from components.java
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "jchart2d-uimenu"
+        websiteUrl = "https://github.com/simonduf/jchart2d-uimenu"
+        vcsUrl = "https://github.com/simonduf/jchart2d-uimenu"
+        licenses = ["LGPL-2.1"]
+        userOrg = 'simond'
+        publish = true
+        
+        version {
+                name = version
+                desc = 'jchart2d gradle port experiment'
+                released  = new Date()
+                //vcsTag = version
+                //attributes = []
         }
     }
-    repositories {
-        maven {
-            url "file://${gitPublishConfig.home}/${gitPublishConfig.org}/${gitPublishConfig.repo}/releases"
-        }
-    }
-}
-
-//task publishJar(type: Upload, description: "Upload Jar library") {
-//    configuration = configurations.MyJar
-//    repositories {
-//        mavenDeployer {
-//            repository(url: url())
-//        }
-//    }
-//}
-
-githubPages {
-  repoUri = 'git@github.com:simonduf/jchart2d-uimenu.git'
-  pages {
-    from javadoc
-  }
 }
 
 //task tagRelease << {
