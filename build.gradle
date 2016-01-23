@@ -88,10 +88,10 @@ bintray {
         publish = true
         
         version {
-                name = version
+                name = project.version
                 desc = 'jchart2d gradle port experiment'
                 released  = new Date()
-                //vcsTag = version
+                vcsTag = "v"+project.version
                 //attributes = []
         }
     }
