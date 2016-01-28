@@ -57,7 +57,7 @@ public class ErrorBarDirectionPanel
   private static final long serialVersionUID = 7474825906798331943L;
 
   /**
-   * Creates an instance that hooks as a control (view & controller) to the
+   * Creates an instance that hooks as a control (view and controller) to the
    * error bar policy model instance.
    * <p>
    * 

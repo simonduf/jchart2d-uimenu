@@ -34,21 +34,25 @@ import javax.swing.AbstractButton;
 import javax.swing.JRadioButtonMenuItem;
 
 /**
+ * <p>
  * <code>Action</code> that invokes <code>{@link Chart2D#setUseAntialiasing(boolean)}</code>
- * upon selection by the triggering <code>{@link AbstractButton}</code>.<p>
- * 
- * Also this <code>Action</p> will track the state <code>{@link Chart2D#isUseAntialiasing()}</code> 
+ * upon selection by the triggering <code>{@link AbstractButton}</code>.
+ * </p>
+ * <p>
+ * Also this <code>Action</code> will track the state <code>{@link Chart2D#isUseAntialiasing()}</code> 
  * as a listener of the chart and inform all listeners of this action for the event <code>{@link info.monitorenter.gui.chart.controls.LayoutFactory.PropertyChangeCheckBoxMenuItem#PROPERTY_SELECTED}</code> 
  * with the new state.
- * To listen to this action just have a look at the usage of <code>{@link info.monitorenter.gui.chart.controls.LayoutFactory.SelectionPropertyAdaptSupport}</code>.<p>
+ * To listen to this action just have a look at the usage of <code>{@link info.monitorenter.gui.chart.controls.LayoutFactory.SelectionPropertyAdaptSupport}</code>.
+ * </p>
  * 
- * <h2>Caution</h2> This implementation only works if assigned to a trigger that
+ * <p>
+ * <em>Caution</em> This implementation only works if assigned to a trigger that
  * descends from {@link AbstractButton} (e.g.
  * {@link javax.swing.JCheckBoxMenuItem} or {@link JRadioButtonMenuItem}): It
  * assumes that the source instance given to
  * {@link #actionPerformed(ActionEvent)} within the action event is of that type
  * as the state information (selected) is needed.
- * <p>
+ * </p>
  * 
  * @author <a href="mailto:Achim.Westermann@gmx.de">Achim Westermann</a>
  * 
@@ -59,15 +63,16 @@ public class Chart2DActionEnableAntialiasing extends AChart2DAction {
 
   /**
    * Generated <code>serial version UID</code>.
-   * <p>
+   * 
    */
   private static final long serialVersionUID = -5816028313134616682L;
 
   /**
+   * <p>
    * Creates an <code>Action</code> that will invoke
    * <code>{@link Chart2D#enablePointHighlighting(boolean)}</code> with the
    * state of the triggering <code>{@link ItemSelectable}</code>
-   * <p>
+   * </p>
    * 
    * @param chart
    *          the owner of the axis to trigger actions upon.

@@ -65,10 +65,24 @@ dependencies {
 	compile 'net.sf.jchart2d:jchart2d:3.3.2'
 	compile 'org.apache.xmlgraphics:fop:2.1'
 	
-    testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile 'junit:junit:4.7'
 }
 
+// custom tasks for creating source/javadoc jars
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
 
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// add javadoc/source jar tasks as artifacts
+artifacts {
+    archives sourcesJar, javadocJar
+}
 
 
 Properties properties = new Properties()
@@ -91,7 +105,7 @@ bintray {
         version {
                 name = project.version
                 desc = 'jchart2d gradle port experiment'
-                released  = new Date()
+                released  = new Date().format("EEE MMM dd HH:mm:ss zzz yyyy")
                 vcsTag = "v"+project.version
                 //attributes = []
         }

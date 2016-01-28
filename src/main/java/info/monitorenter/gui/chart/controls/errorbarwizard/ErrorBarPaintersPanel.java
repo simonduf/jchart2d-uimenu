@@ -83,7 +83,7 @@ public class ErrorBarPaintersPanel
     private IErrorBarPainter m_errorBarPainter;
 
     /**
-     * Creates an instance that displays as a control (view & controller) to the
+     * Creates an instance that displays as a control (view and controller) to the
      * error bar painter instance.
      * <p>
      * 
@@ -176,7 +176,7 @@ public class ErrorBarPaintersPanel
   private JButton m_addButton;
 
   /**
-   * Creates an instance that hooks as a control (view & controller) to the
+   * Creates an instance that hooks as a control (view and controller) to the
    * error bar policy model instance.
    * <p>
    * 
