@@ -33,6 +33,7 @@ plugins {
 repositories {
         mavenCentral()
         jcenter()
+        maven { url 'https://dl.bintray.com/simond/maven' }
     }
 
 
@@ -52,17 +53,17 @@ task printVersion {
     doLast { println project.version }
 }
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 //version = '1.0.1' //Defined by release-opinion
 group = 'simond'
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.9'
+    gradleVersion = '2.13'
 }
 
 dependencies {
-	compile 'net.sf.jchart2d:jchart2d:3.3.2'
+	compile 'simond:jchart2d-code:0.0.1-rc.3'
 	compile 'org.apache.xmlgraphics:fop:2.1'
 	
     testCompile 'junit:junit:4.7'
