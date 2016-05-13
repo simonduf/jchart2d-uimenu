@@ -1524,6 +1524,19 @@ public final class LayoutFactory {
     }
     buttonGroup.add(item);
     numberMenu.add(item);
+    
+    // 2 fraction digit
+    nf = new DecimalFormat("#.######");
+    formatter = new LabelFormatterNumber(nf);
+    action = new AxisActionSetFormatter(chart, "6 fraction digits", axisDimension, formatter);
+    selected = formatter.equals(presetFormatter);
+    if (adaptUI2Chart) {
+      item = new PropertyChangeJRadioButtonMenuItem(chart, action, selected, BasicPropertyAdaptSupport.RemoveAsListenerFromComponentNever.getInstance());
+    } else {
+      item = new SelectionAdaptJRadioButtonMenuItem(action, selected);
+    }
+    buttonGroup.add(item);
+    numberMenu.add(item);
 
     /*
      * Submenu for date formatters.
